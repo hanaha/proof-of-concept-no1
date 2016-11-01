@@ -67,10 +67,19 @@ public class Attribute
         return copyAttribute ;
     }
 
-    String name;
+    @Override
+    public String toString() {
+        return this.getName() + " ; " +
+                this.getFixedFlat() + " [" +
+                this.getMinFlat() + " - " +
+                this.getMaxFlat() + "] " +
+                " scaling: " + this.baseScaling;
+    }
 
-    public double minFlat = 0;
-    public double maxFlat = 0;
-    public double fixedFlat = 0;
-    public double baseScaling = 0;
+    private String name;
+
+    private double minFlat = 0;
+    private double maxFlat = 0;
+    private double fixedFlat = 0;
+    private double baseScaling = 1;
 }

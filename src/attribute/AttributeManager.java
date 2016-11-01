@@ -212,14 +212,26 @@ public class AttributeManager
         return (Set<Attribute>) attributes.values();
     }
 
-    Map<String, Attribute> attributes = new HashMap<>();
-    Map<Attribute, Attribute> intermediaryAttributesStepOne = new HashMap<>();
-    Map<Attribute, Attribute> intermediaryAttributesStepTwo = new HashMap<>();
-    Map<Attribute, Attribute> finalAttributes = new HashMap<>();
+    public Map<String, Attribute> getFinalAttributes()
+    {
+        Map<String, Attribute> returnMap = new HashMap<>(this.finalAttributes.size());
 
-    Map<String, Integer> modifierCounter = new HashMap<>();
+        for (Attribute attribute : this.finalAttributes.values())
+        {
+            returnMap.put(attribute.getName(), attribute);
+        }
 
-    Set<AttributeFlatValueModifier> flatValueModifiers = new HashSet<>();
-    Set<AttributeAdditiveScalingModifier> additiveScalingModifiers = new HashSet<>();
-    Set<AttributeMultiplicativeScalingModifier> multiplicativeScalingModifiers = new HashSet<>();
+        return returnMap;
+    }
+
+    private Map<String, Attribute> attributes = new HashMap<>();
+    private Map<Attribute, Attribute> intermediaryAttributesStepOne = new HashMap<>();
+    private Map<Attribute, Attribute> intermediaryAttributesStepTwo = new HashMap<>();
+    private Map<Attribute, Attribute> finalAttributes = new HashMap<>();
+
+    private Map<String, Integer> modifierCounter = new HashMap<>();
+
+    private Set<AttributeFlatValueModifier> flatValueModifiers = new HashSet<>();
+    private Set<AttributeAdditiveScalingModifier> additiveScalingModifiers = new HashSet<>();
+    private Set<AttributeMultiplicativeScalingModifier> multiplicativeScalingModifiers = new HashSet<>();
 }

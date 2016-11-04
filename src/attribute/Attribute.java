@@ -15,8 +15,9 @@ public class Attribute
         this.name = name;
     }
 
-    public double getMinFlat() {
-        return minFlat * baseScaling;
+    public double getMinFlat()
+    {
+        return Utils.roundBigDecimal(minFlat * baseScaling, 6);
     }
 
     public void modifyMinFlat(double delta)
@@ -24,8 +25,9 @@ public class Attribute
         this.minFlat += delta;
     }
 
-    public double getMaxFlat() {
-        return maxFlat * baseScaling;
+    public double getMaxFlat()
+    {
+        return Utils.roundBigDecimal(maxFlat * baseScaling, 6);
     }
 
     public void modifyMaxFlat(double delta)
@@ -33,8 +35,9 @@ public class Attribute
         this.maxFlat += delta;
     }
 
-    public double getFixedFlat() {
-        return fixedFlat * baseScaling;
+    public double getFixedFlat()
+    {
+        return Utils.roundBigDecimal(fixedFlat * baseScaling, 6);
     }
 
     public void modifyFixedFlat(double delta)

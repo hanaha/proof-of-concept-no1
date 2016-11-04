@@ -80,7 +80,8 @@ public class AttributeManager
         for (AttributeAdditiveScalingModifier modifier : this.additiveScalingModifiers)
         {
             modifier.modify(this.intermediaryAttributesStepTwo.get(
-                    this.intermediaryAttributesStepOne.get(modifier.getAttributeName())));
+                    this.intermediaryAttributesStepOne.get(
+                            this.attributes.get(modifier.getAttributeName()))));
         }
 
         this.calculateFinalAttributes();
@@ -90,7 +91,7 @@ public class AttributeManager
     {
         this.finalAttributes = new HashMap<>();
 
-        for (Attribute attribute : intermediaryAttributesStepTwo.values())
+        for (Attribute attribute : this.intermediaryAttributesStepTwo.values())
         {
             this.finalAttributes.put(attribute, attribute.copy());
         }
@@ -98,7 +99,9 @@ public class AttributeManager
         for (AttributeMultiplicativeScalingModifier modifier : this.multiplicativeScalingModifiers)
         {
             modifier.modify(this.finalAttributes.get(
-                    this.intermediaryAttributesStepTwo.get(modifier.getAttributeName())));
+                    this.intermediaryAttributesStepTwo.get(
+                            this.intermediaryAttributesStepOne.get(
+                                    this.attributes.get(modifier.getAttributeName())))));
         }
     }
 
@@ -118,14 +121,13 @@ public class AttributeManager
 
     public void addModifier(AttributeAdditiveScalingModifier modifier)
     {
-        this.additiveScalingModifiers.add(modifier);
-
         if (this.additiveScalingModifiers.contains(modifier))
         {
             // we do nothing. We don't want same instance stacking over itself.
         }
         else
         {
+            this.additiveScalingModifiers.add(modifier);
             this.newAttributeCheck(modifier.getAttributeName());
             this.additiveScalingModifiers.add(modifier);
             this.increaseAttributeCounter(modifier.getAttributeName());

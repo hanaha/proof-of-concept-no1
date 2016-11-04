@@ -113,7 +113,7 @@ public class AttributeManagerTest {
 
 
     @Test
-    public void addAndRemoveAllModifiers() throws Exception
+    public void addAllModifiers() throws Exception
     {
         AttributeFlatValueModifier alphaFixedFlat =
                 new AttributeFlatValueModifier(ATTRIBUTE_ALPHA, 5);
